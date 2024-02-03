@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link type="image/png" sizes="16x16" rel="icon" href="https://cdn3.iconfinder.com/data/icons/education-133/500/366-1024.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@600&family=Rubik+Doodle+Shadow&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .body {
+            background: url('https://images.unsplash.com/photo-1502472584811-0a2f2feb8968?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            width: 100%;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+       
+            align-items: center;
+            font-family: 'Rubik Doodle Shadow';
+
+            justify-content: center;
+        }
+
+        .form-div {
+            display: flex;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .form-div form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-div form input {
+            height: 40px;
+            width: 300px;
+            font-size: 23px;
+        }
+
+        .form-div form label {
+            font-size: 24px;
+            color: white;
+            font-family: 'Rubik Doodle Shadow';
+            margin-bottom: 5px;
+        }
+
+        .form-div form button {
+            width: 110px;
+            height: 35px;
+            border-radius: 20px;
+            border: 1px solid black;
+            margin-top: 10px;
+        }
+
+        .result {
+            height: 300px;
+            /* background-color: aqua; */
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .result h1 {
+            text-align: center;
+            color: #FFFF;
+            font-size: 30px;
+            font-weight: 800;
+        }
+
+        .shadow-div {
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="body">
+
+        <div class="shadow-div">
+
+            <div class="form-div">
+
+                <form>
+                    <label for="age">Date Of Birth</label>
+
+                    <input type="date" name="" id="UserDateOfBirth" required>
+
+                    <button id="btn">Submit</button>
+                </form>
+            </div>
+            <div class="result">
+                <h1 class="result-h1">
+
+                </h1>
+            </div>
+
+        </div>
+
+    </div>
+    <script type="module">
+
+        let userBtn = document.querySelector('#btn')
+
+        userBtn.addEventListener("click", (event) => {
+            event.preventDefault()
+            let userInput = document.querySelector('#UserDateOfBirth').value
+            if (userInput) {
+
+                let UserDateOfBirth = new Date(userInput)
+                let current = new Date()
+
+                let diffrence = UserDateOfBirth - current;
+
+                let ageInYears = Math.abs(diffrence / (365.25 * 24 * 60 * 60 * 1000));
+                let floorDate = Math.floor(ageInYears)
+                let result = document.querySelector('.result-h1')
+                result.innerHTML = floorDate
+
+
+
+                console.log('user birth date :', UserDateOfBirth);
+                console.log('now date : ', current)
+                console.log('diffrence : ', diffrence)
+                console.log('age in year : ', floorDate)
+            }
+            else {
+                let result = document.querySelector('.result-h1')
+            
+                result.innerHTML = 'Please Enter Your birth Date'
+            }
+        })
+
+    </script>
+
+
+</body>
+
+</html>
